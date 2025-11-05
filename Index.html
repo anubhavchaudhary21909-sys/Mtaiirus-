@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The KeyVault App Store</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Set up custom dark theme and font -->
+    <style>
+        @import url('https://fonts.fonts.gstatic.com/s/inter/v13/U6H-jGgM_8d7Jrgx-T8D-rT4XvK_i.woff2') format('woff2');
+        
+        :root {
+            --color-primary: #00e676; /* Bright Green Accent */
+            --color-secondary: #1f2937; /* Card Background */
+            --color-background: #0f172a; /* Dark Blue-Gray Background */
+            --color-orange-accent: #ff9800; /* Orange for Welcome Banner */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top initially, will center on key-generator */
+        }
+        .app-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .app-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 230, 118, 0.2), 0 4px 6px -2px rgba(0, 230, 118, 0.1);
+        }
+        .key-button {
+            background-color: var(--color-primary);
+            color: #1f2937;
+            font-weight: 600;
+            border-radius: 9999px;
+            padding: 0.75rem 1.5rem;
+            transition: background-color 0.2s, transform 0.1s;
+            /* Added custom shadow for the Server 3 button */
+            box-shadow: 0 10px 20px -5px rgba(0, 230, 118, 0.5); 
+        }
+        .key-button:hover:not(:disabled) {
+            background-color: #00c853; /* Slightly darker green */
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px -5px rgba(0, 230, 118, 0.7); 
+        }
+        .key-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none !important;
+        }
+
+        /* Override for download buttons inside the store */
+        #app-store-view .key-button {
+            box-shadow: none;
+        }
+        #app-store-view .key-button:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling for the Key Generation View to match the image */
+        #key-generator-view {
+            max-width: 600px;
+            width: 90%;
+            margin-top: 5vh;
+            text-align: center;
+        }
+        .welcome-banner {
+            background: linear-gradient(135deg, #ffb300, var(--color-orange-accent));
+            box-shadow: 0 4px 10px rgba(255, 152, 0, 0.4);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <!-- 1. KEY GENERATOR VIEW (Initial Gate) -->
+    <div id="key-generator-view" class="hidden">
+        <div class="welcome-banner text-gray-900 font-semibold p-4 rounded-xl mb-12 transform -translate-y-4 inline-flex items-center">
+            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            Welcome! Click server and generate key to get access
+        </div>
+
+        <div class="bg-[var(--color-secondary)] p-8 rounded-3xl shadow-2xl border border-gray-700/50">
+            <div class="mb-8">
+                <!-- Placeholder Image (mimicking the logo area) -->
+                <div class="w-24 h-24 mx-auto mb-6 bg-indigo-900 rounded-full flex items-center justify-center border-4 border-indigo-500/50">
+                    <span class="text-5xl">🔑</span>
+                </div>
+                <h2 class="text-4xl font-extrabold text-white mb-6">
+                    Generate <span class="text-[var(--color-primary)]">Access Key</span>
+                </h2>
+                <p class="text-gray-400">Choose Server to generate access key for the KeyVault App Store.</p>
+            </div>
+
+            <!-- Server Selection Box -->
+            <div class="bg-gray-800 p-4 rounded-xl mb-8 border border-gray-700">
+                <p class="text-gray-300 font-medium mb-4">Choose Server to generate access key for appstore (Example)</p>
+                <button 
+                    onclick="generateGlobalKey()" 
+                    class="key-button text-xl w-full flex items-center justify-center shadow-lg hover:shadow-green-500/30">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                    Server 3
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. APP STORE VIEW (Visible only after key acquisition) -->
+    <div id="app-store-view" class="hidden w-full max-w-7xl">
+        <!-- Header -->
+        <header class="mb-10 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+                <span class="text-[var(--color-primary)]">Key</span>Vault Store
+            </h1>
+            <p class="mt-2 text-lg text-gray-400">Welcome! Your 24-Hour Access Key is Active.</p>
+        </header>
+
+        <!-- Main App Grid Container -->
+        <main id="app-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mx-auto">
+            <!-- App cards will be injected here by JavaScript -->
+        </main>
+    </div>
+
+    <!-- Modal for Download (Used for all app downloads once key is active) -->
+    <div id="key-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4" onclick="closeModal(event)">
+        <div class="bg-gray-800 rounded-xl shadow-2xl w-full max-w-lg p-6 md:p-8 transform transition-all duration-300 scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-4">
+                <h2 id="modal-title" class="text-3xl font-bold text-[var(--color-primary)]">Download Access</h2>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white transition duration-150 text-2xl">&times;</button>
+            </div>
+
+            <div id="modal-content-container">
+                <!-- Content injected here -->
+            </div>
+
+            <div class="mt-6 text-sm text-center text-gray-400">
+                Key generation system provided 24-hour access.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA ---
+        // Your APK download links are defined here
+        const apps = [
+            { id: 'app-a', title: 'Cosmic Explorer Pro', icon: '🚀', description: 'Advanced star map and celestial navigation tool for hobbyists and professionals.', size: '45 MB', version: '2.1.0', downloadLink: 'https://your-server.com/apks/cosmic-explorer.apk' },
+            { id: 'app-b', title: 'Quantum Synth Music Maker', icon: '🎧', description: 'Create rich, layered electronic music with a powerful 8-bit synthesizer engine.', size: '98 MB', version: '3.5.2', downloadLink: 'https://your-server.com/apks/quantum-synth.apk' },
+            { id: 'app-c', title: 'Data Stream Manager', icon: '📊', description: 'Real-time dashboard to monitor data flow and network integrity on mobile devices.', size: '12 MB', version: '1.0.8', downloadLink: 'https://your-server.com/apks/data-stream.apk' },
+            { id: 'app-d', title: 'Pixel Runner Xtreme', icon: '🕹️', description: 'A fast-paced, retro-style endless runner with procedurally generated levels.', size: '32 MB', version: '1.9.0', downloadLink: 'https://your-server.com/apks/pixel-runner.apk' },
+            { id: 'app-e', title: 'Zen Focus Timer', icon: '🧘', description: 'Minimalist Pomodoro timer with ambient sounds for deep work sessions.', size: '5 MB', version: '4.0.1', downloadLink: 'https://your-server.com/apks/zen-focus.apk' },
+            { id: 'app-f', title: 'Fusion Recipe Book', icon: '🍜', description: 'A curated collection of modern fusion cuisine recipes from top chefs worldwide.', size: '25 MB', version: '1.2.3', downloadLink: 'https://your-server.com/apks/fusion-recipes.apk' },
+            { id: 'app-g', title: 'Arcade Space Shooter', icon: '👾', description: 'Classic vertical-scrolling shooter with modern graphics and intense boss battles.', size: '60 MB', version: '1.5.0', downloadLink: 'https://your-server.com/apks/space-shooter.apk' },
+            { id: 'app-h', title: 'Creative Photo Editor', icon: '🎨', description: 'Professional tools for editing photos with filters, layers, and advanced masking.', size: '150 MB', version: '5.2.0', downloadLink: 'https://your-server.com/apks/photo-editor.apk' }
+        ];
+
+        // --- CONSTANTS & SECURITY HELPERS ---
+        const GLOBAL_ACCESS_KEY = 'global_access_key';
+        const VERIFICATION_TIMESTAMP_KEY = 'verification_timestamp'; // New key for verification lock
+        const KEY_DURATION_MS = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+        const VERIFICATION_DELAY_MS = 90 * 1000; // 90 seconds wait time
+        const VPLINKS_BASE_URL = 'https://vplinks.net/go?key='; 
+
+        // CRITICAL SECURITY COMPONENT: This "secret" phrase is used to generate the validation hash.
+        const SECRET_PHRASE = "KeyVaultSecure24Hour!!@#$"; 
+
+        /**
+         * Generates a simple, non-cryptographic hash based on the timestamp and the secret.
+         */
+        function generateHash(timestamp) {
+            const data = timestamp.toString() + SECRET_PHRASE;
+            // Simple Base64 encoding for obfuscation (not encryption)
+            return btoa(data).substring(0, 30); 
+        }
+
+        /**
+         * Safely retrieve the stored global key object.
+         */
+        function getGlobalKey() {
+            try {
+                const keysJson = localStorage.getItem(GLOBAL_ACCESS_KEY);
+                const keyObject = keysJson ? JSON.parse(keysJson) : null;
+
+                if (keyObject && typeof keyObject.timestamp === 'number' && typeof keyObject.validationHash === 'string') {
+                    return keyObject;
+                }
+                return null;
+            } catch (e) {
+                console.error("Error reading global key from localStorage:", e);
+                return null;
+            }
+        }
+
+        /**
+         * Safely save the global key object to localStorage.
+         */
+        function saveGlobalKey(keyObject) {
+            try {
+                localStorage.setItem(GLOBAL_ACCESS_KEY, JSON.stringify(keyObject));
+            } catch (e) {
+                console.error("Error saving global key to localStorage:", e);
+            }
+        }
+
+        /**
+         * Check if the global access key is currently valid (time and hash check).
+         */
+        function isGlobalKeyValid() {
+            const globalKey = getGlobalKey();
+            if (!globalKey) {
+                return false;
+            }
+
+            const currentTimestamp = Date.now();
+            
+            // 1. Time Check: Is the key expired?
+            const keyAge = currentTimestamp - globalKey.timestamp;
+            if (keyAge >= KEY_DURATION_MS) {
+                return false;
+            }
+
+            // 2. Hash Check (Security Step): Does the stored hash match the expected hash?
+            const expectedHash = generateHash(globalKey.timestamp);
+            if (expectedHash !== globalKey.validationHash) {
+                return false;
+            }
+
+            return true;
+        }
+
+        // --- TIMED REFRESH LOGIC ---
+
+        let countdownInterval = null;
+
+        /**
+         * Starts the countdown timer for the "I have returned" button.
+         * @param {number} endTime - The timestamp when the button should unlock.
+         */
+        function startCountdown(endTime) {
+            const button = document.getElementById('refresh-button');
+            
+            if (!button) return;
+
+            // Clear any existing interval
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+            }
+
+            const updateTimer = () => {
+                const now = Date.now();
+                const remainingMs = endTime - now;
+
+                if (remainingMs <= 0) {
+                    clearInterval(countdownInterval);
+                    button.disabled = false;
+                    button.textContent = 'I have returned (Refresh Page)';
+                    button.classList.remove('bg-gray-500', 'hover:bg-gray-600');
+                    button.classList.add('bg-green-500', 'hover:bg-green-600');
+                } else {
+                    const remainingSeconds = Math.ceil(remainingMs / 1000);
+                    button.disabled = true;
+                    button.textContent = `Wait ${remainingSeconds}s before refreshing...`;
+                    button.classList.remove('bg-green-500', 'hover:bg-green-600');
+                    button.classList.add('bg-gray-500', 'hover:bg-gray-600');
+                }
+            };
+
+            countdownInterval = setInterval(updateTimer, 500); // Check twice a second
+            updateTimer(); // Initial call
+        }
+
+        // --- RENDER & MODAL FUNCTIONS ---
+
+        /**
+         * Renders a single app card.
+         */
+        function renderAppCard(app) {
+            return `
+                <div id="card-${app.id}" class="app-card bg-[var(--color-secondary)] rounded-xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="text-5xl mb-4">${app.icon}</div>
+                        <h3 class="text-2xl font-bold mb-2 text-white">${app.title}</h3>
+                        <p class="text-gray-400 text-sm mb-4">${app.description}</p>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-4 flex justify-between">
+                            <span>Size: ${app.size}</span>
+                            <span>Version: ${app.version}</span>
+                        </div>
+                        <button class="key-button w-full" onclick="showDownloadModal('${app.id}')">
+                            Download Now
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        /**
+         * Main function to render all app cards to the grid.
+         */
+        function renderAppGrid() {
+            const appGrid = document.getElementById('app-grid');
+            if (appGrid) {
+                appGrid.innerHTML = apps.map(renderAppCard).join('');
+            }
+        }
+
+        /**
+         * Shows the modal overlay.
+         */
+        function showModal() {
+            document.getElementById('key-modal').classList.remove('hidden');
+        }
+
+        /**
+         * Hides the modal overlay.
+         */
+        function closeModal(event) {
+            if (event && event.target.id !== 'key-modal') return; 
+            document.getElementById('key-modal').classList.add('hidden');
+        }
+
+        /**
+         * Initiates the global key generation process and redirects to VPlinks.
+         */
+        function generateGlobalKey() {
+            // 1. GENERATE KEY DATA
+            const newTimestamp = Date.now();
+            const newHash = generateHash(newTimestamp);
+            const keyObject = { timestamp: newTimestamp, validationHash: newHash };
+            saveGlobalKey(keyObject);
+
+            // 2. SET VERIFICATION LOCKOUT TIME
+            const verificationEndTime = newTimestamp + VERIFICATION_DELAY_MS;
+            localStorage.setItem(VERIFICATION_TIMESTAMP_KEY, verificationEndTime);
+
+            // 3. CONSTRUCT VPLINKS URL (MOCK)
+            const vplinksUrl = `${VPLINKS_BASE_URL}${newTimestamp}`; 
+
+            // 4. SHOW MODAL INSTRUCTION
+            document.getElementById('modal-title').textContent = `Verification Required`;
+            document.getElementById('modal-content-container').innerHTML = `
+                <p class="text-gray-300 mb-4">
+                    To activate your 24-Hour Access Key, you must complete the verification process through our ad partner.
+                </p>
+
+                <div class="bg-gray-900 border border-[var(--color-primary)]/50 p-4 rounded-lg shadow-md mb-6">
+                    <p class="font-semibold text-white mb-2">Step 1: Unlock Final Destination</p>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Click the link below. You must complete **all VPlinks redirection steps** until you reach the final destination page.
+                    </p>
+                    <a href="${vplinksUrl}" target="_blank" class="w-full inline-block text-center key-button mb-3">
+                        Go to VPlinks & Get Final Link ↗
+                    </a>
+                </div>
+
+                <div class="bg-gray-700 p-4 rounded-lg">
+                    <p class="font-semibold text-white mb-2">Step 2: Access Store</p>
+                    <p class="text-sm text-gray-300 mb-3">
+                        After completing the VPlinks process, return to this page and **wait for the timer** to expire below. The timer simulates the necessary delay for verification.
+                    </p>
+                    <button id="refresh-button" class="w-full mt-2 key-button text-white" onclick="window.location.reload();">
+                        I have returned (Refresh Page)
+                    </button>
+                </div>
+            `;
+            showModal();
+            startCountdown(verificationEndTime);
+        }
+
+        /**
+         * Shows the direct download modal (only callable when global key is valid).
+         */
+        function showDownloadModal(appId) {
+            const app = apps.find(a => a.id === appId);
+            const globalKey = getGlobalKey();
+            
+            if (!app || !isGlobalKeyValid()) {
+                // If key is invalid, force re-auth
+                document.getElementById('app-store-view').classList.add('hidden');
+                document.getElementById('key-generator-view').classList.remove('hidden');
+                return;
+            }
+
+            const downloadUrl = app.downloadLink; 
+            const expiryTimestamp = globalKey.timestamp + KEY_DURATION_MS;
+            const expiryDate = new Date(expiryTimestamp);
+
+            document.getElementById('modal-title').textContent = `Download ${app.title}`;
+            document.getElementById('modal-content-container').innerHTML = `
+                <p class="text-lg text-white mb-4">
+                    Access Granted!
+                </p>
+                <p class="text-gray-300 mb-6">
+                    Your store access key is valid until 
+                    <span class="font-semibold text-yellow-400">${expiryDate.toLocaleTimeString()} on ${expiryDate.toLocaleDateString()}</span>. Click below to start your download.
+                </p>
+
+                <a href="${downloadUrl}" download="${app.title.replace(/\s/g, '_')}.apk" class="w-full inline-block text-center key-button">
+                    <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Download APK (${app.size})
+                </a>
+
+                <button class="w-full mt-3 key-button bg-gray-600 hover:bg-gray-700 text-white" onclick="closeModal()">
+                    Close
+                </button>
+            `;
+
+            showModal();
+        }
+
+        /**
+         * Handles switching between the Key Generator view and the App Store view.
+         */
+        function init() {
+            const keyGeneratorView = document.getElementById('key-generator-view');
+            const appStoreView = document.getElementById('app-store-view');
+            
+            if (isGlobalKeyValid()) {
+                // Key is valid and hashed correctly, show the App Store
+                appStoreView.classList.remove('hidden');
+                keyGeneratorView.classList.add('hidden');
+                renderAppGrid();
+                document.body.style.alignItems = 'flex-start'; 
+
+            } else {
+                // Key is invalid, expired, or tampered with, show the Key Generator landing page
+                // Clear all keys if invalid
+                localStorage.removeItem(GLOBAL_ACCESS_KEY); 
+                localStorage.removeItem(VERIFICATION_TIMESTAMP_KEY); 
+
+                appStoreView.classList.add('hidden');
+                keyGeneratorView.classList.remove('hidden');
+                document.body.style.alignItems = 'center'; 
+            }
+        }
+
+        // --- INITIALIZATION ---
+        window.onload = function() {
+            init();
+            // Check key expiration and validity every minute
+            setInterval(init, 60000); 
+        };
+    </script>
+
+</body>
+</html>
