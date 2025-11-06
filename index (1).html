@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mtaiirus App Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #071226;
+      --accent: #10b981;
+      --banner: #f59e0b;
+      --glass: rgba(255, 255, 255, 0.03);
+      --card-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.03));
+      --text-primary: #e6eef6;
+      --text-secondary: #9ca3af;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(180deg, #041024 0%, #071226 100%);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Welcome Page Styles */
+    #welcomePage {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 760px;
+      text-align: center;
+    }
+
+    .banner {
+      background: var(--banner);
+      color: #0b1220;
+      padding: 10px 14px;
+      border-radius: 10px;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      margin: 0 auto 22px;
+      box-shadow: 0 6px 20px rgba(5, 10, 20, 0.45);
+      font-weight: 600;
+    }
+
+    .banner-dot {
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .welcome-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid var(--glass);
+      padding: 30px;
+      box-shadow: 0 20px 50px rgba(3, 6, 12, 0.6);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .welcome-logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #0ea5a4, #10b981);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #071226;
+      font-weight: 700;
+      margin: 0 auto 12px;
+    }
+
+    .welcome-card h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .welcome-card p {
+      color: var(--text-secondary);
+      margin: 6px 0 16px;
+    }
+
+    .link-btn {
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 12px 22px;
+      border-radius: 999px;
+      display: inline-block;
+      font-weight: 600;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .link-btn:hover {
+      background: var(--accent);
+      color: #071226;
+    }
+
+    /* App Store Styles (Hidden Initially) */
+    #appStore {
+      display: none;
+    }
+
+    header {
+      background: linear-gradient(90deg, #0f3460, #1e3a8a);
+      color: var(--text-primary);
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(3, 6, 12, 0.6);
+      border-bottom: 1px solid var(--glass);
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo i {
+      font-size: 28px;
+      color: var(--accent);
+    }
+
+    .logo h1 {
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .search-container {
+      flex: 1;
+      max-width: 600px;
+      position: relative;
+      margin: 0 20px;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 12px 20px;
+      padding-left: 45px;
+      border-radius: 24px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      background-color: rgba(255, 255, 255, 0.07);
+      color: var(--text-primary);
+      transition: all 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .search-box::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .search-box:focus {
+      background-color: rgba(255, 255, 255, 0.12);
+      border-color: var(--accent);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .search-box:focus + .search-icon {
+      color: var(--accent);
+    }
+
+    .user-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-actions button,
+    .user-actions a {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .user-actions a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: var(--accent);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .category-tabs {
+      display: flex;
+      overflow-x: auto;
+      padding: 15px 0;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .category-tabs button {
+      background: none;
+      border: none;
+      padding: 10px 20px;
+      margin-right: 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 15px;
+      white-space: nowrap;
+      transition: all 0.3s;
+      color: var(--text-secondary);
+    }
+
+    .category-tabs button.active {
+      background-color: rgba(16, 185, 129, 0.2);
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .category-tabs button:hover:not(.active) {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+    }
+
+    .section-title {
+      margin: 25px 0 15px;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .app-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      border: 1px solid var(--glass);
+    }
+
+    .app-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(3, 6, 12, 0.5);
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .app-icon img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .app-info {
+      padding: 12px;
+    }
+
+    .app-name {
+      font-weight: 600;
+      margin-bottom: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text-primary);
+    }
+
+    .app-developer {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .app-rating {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .stars {
+      color: #fbbf24;
+      margin-right: 5px;
+    }
+
+    .rating-value {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .install-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #0ea5a4, #10b981);
+      color: #071226;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .install-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <!-- Welcome Page -->
+  <div id="welcomePage">
+    <div class="wrap">
+      <div class="banner">
+        <span class="banner-dot"></span>
+        Welcome to Mtaiirus App Store
+      </div>
+
+      <div class="welcome-card">
+        <div class="welcome-logo">🛍</div>
+        <h1>Mtaiirus App Store</h1>
+        <p>Access your apps and downloads once your key is active.</p>
+        <a id="openContentBtn" class="link-btn">Open Content</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Store (Hidden Initially) -->
+  <div id="appStore">
+    <header>
+      <div class="header-container">
+        <div class="logo">
+          <i class="fab fa-google-play"></i>
+          <h1>Mtaiirus</h1>
+        </div>
+        <div class="search-container">
+          <input type="text" class="search-box" placeholder="Search for apps..." id="searchInput" />
+          <i class="fas fa-search search-icon"></i>
+        </div>
+        <div class="user-actions">
+          <button><i class="fas fa-user"></i></button>
+          <a href="https://t.me/SHP910" target="_blank"><i class="fas fa-paper-plane"></i> Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="category-tabs">
+        <button class="active">For You</button>
+        <button>Games</button>
+        <button>Productivity</button>
+        <button>Entertainment</button>
+        <button>Social</button>
+        <button>Tools</button>
+      </div>
+
+      <h2 class="section-title">Featured Apps</h2>
+      <div class="app-grid" id="appGrid"></div>
+
+      <h2 class="section-title">Top Charts</h2>
+      <div class="app-grid" id="topChartsGrid"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCmxUAoLebdB7Y9XtjSERISYY6SfNPKx0M",
+      authDomain: "mtariius.firebaseapp.com",
+      databaseURL: "https://mtariius-default-rtdb.firebaseio.com",
+      projectId: "mtariius",
+      storageBucket: "mtariius.firebasestorage.app",
+      messagingSenderId: "52933884439",
+      appId: "1:52933884439:web:9efb643f5f735174e4ba52"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const appsRef = ref(db, "apps");
+
+    function renderApps(apps, container) {
+      container.innerHTML = "";
+      apps.forEach(app => {
+        const appCard = document.createElement("div");
+        appCard.className = "app-card";
+        appCard.innerHTML = `
+          <div class="app-icon">
+            <img src="${app.imageSrc}" alt="${app.name}">
+          </div>
+          <div class="app-info">
+            <h3 class="app-name">${app.name}</h3>
+            <p class="app-developer">${app.developer}</p>
+            <div class="app-rating">
+              <div class="stars">${getStars(app.rating)}</div>
+              <span class="rating-value">${app.rating}</span>
+            </div>
+            <a class="install-btn" href="${app.downloadLink}" target="_blank">Install</a>
+          </div>`;
+        container.appendChild(appCard);
+      });
+    }
+
+    function getStars(rating) {
+      let stars = "";
+      const fullStars = Math.floor(rating);
+      const hasHalf = rating % 1 >= 0.5;
+      for (let i = 0; i < fullStars; i++) stars += '<i class="fas fa-star"></i>';
+      if (hasHalf) stars += '<i class="fas fa-star-half-alt"></i>';
+      for (let i = fullStars + (hasHalf ? 1 : 0); i < 5; i++) stars += '<i class="far fa-star"></i>';
+      return stars;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const openContentBtn = document.getElementById("openContentBtn");
+      const welcomePage = document.getElementById("welcomePage");
+      const appStore = document.getElementById("appStore");
+      const appGrid = document.getElementById("appGrid");
+      const topChartsGrid = document.getElementById("topChartsGrid");
+      
+      // Show app store when "Open Content" is clicked
+      openContentBtn.addEventListener("click", () => {
+        welcomePage.style.display = "none";
+        appStore.style.display = "block";
+      });
+      
+      // Load apps from Firebase
+      onValue(appsRef, (snapshot) => {
+        const data = snapshot.val();
+        const apps = [];
+        for (let id in data) apps.push(data[id]);
+        
+        // Show first 8 apps in Featured section
+        renderApps(apps.slice(0, 8), appGrid);
+        
+        // Show next 8 apps in Top Charts section
+        renderApps(apps.slice(8, 16), topChartsGrid);
+      });
+    });
+  </script>
+</body>
+</html>
