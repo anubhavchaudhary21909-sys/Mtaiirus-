@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Next Toppers Card</title>
+<title>Next Toppers Cards</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -18,39 +18,21 @@
     --danger: #ef4444;
   }
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-  }
-
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
   body {
     background: linear-gradient(180deg, #041024 0%, #071226 100%);
     color: var(--text-primary);
-    overflow-x: hidden;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
     padding: 20px;
   }
+  .site-name { font-size: 18px; font-weight: bold; color: var(--accent); display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+  .site-name i { font-size: 20px; }
 
-  .site-name {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: var(--accent);
+  .cards-container {
     display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .site-name i {
-    font-size: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
   }
 
   .card {
@@ -67,49 +49,14 @@
     width: 100%;
     max-width: 320px;
   }
+  .card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(3,6,12,0.4); border-color: rgba(16,185,129,0.4); }
 
-  .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(3, 6, 12, 0.4);
-    border-color: rgba(16, 185, 129, 0.4);
-  }
+  .card img { width: 100%; height: 180px; object-fit: cover; transition: transform 0.3s; }
+  .card:hover img { transform: scale(1.1); }
 
-  .card-image-container {
-    position: relative;
-    width: 100%;
-    height: 180px;
-    overflow: hidden;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  .card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s;
-  }
-
-  .card:hover img {
-    transform: scale(1.1);
-  }
-
-  .card-content {
-    padding: 20px;
-  }
-
-  .card h3 {
-    margin: 5px 0;
-    font-size: 22px;
-    color: var(--text-primary);
-    font-weight: 700;
-  }
-
-  .card p {
-    margin: 0 0 15px;
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.4;
-  }
+  .card-content { padding: 20px; }
+  .card h3 { font-size: 22px; margin-bottom: 5px; font-weight: 700; color: var(--text-primary); }
+  .card p { font-size: 14px; color: var(--text-secondary); margin-bottom: 15px; }
 
   .card-button {
     display: inline-block;
@@ -118,82 +65,70 @@
     font-weight: 600;
     padding: 10px 20px;
     border-radius: 10px;
-    margin-bottom: 5px;
-    transition: all 0.3s;
     width: 100%;
     text-decoration: none;
+    transition: all 0.3s;
   }
+  .card-button:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(16,185,129,0.3); }
 
-  .card-button:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-  }
-
-  .card-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-  }
-
-  .card-rating {
-    display: flex;
-    align-items: center;
-  }
-
-  .stars {
-    color: #fbbf24;
-    margin-right: 8px;
-  }
-
-  .rating-value {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-  }
-
-  .card-category {
-    background: rgba(16, 185, 129, 0.15);
-    color: var(--accent);
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: 600;
-  }
+  .card-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+  .card-rating { display: flex; align-items: center; }
+  .stars { color: #fbbf24; margin-right: 8px; }
+  .rating-value { font-size: 0.85rem; color: var(--text-secondary); }
+  .card-category { background: rgba(16,185,129,0.15); color: var(--accent); padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
 </style>
 </head>
 <body>
 
 <div class="site-name">
-  <i class="fab fa-google-play"></i>
-  MTAIIRUS STORE
+  <i class="fab fa-google-play"></i> MTAIIRUS STORE
 </div>
 
-<a href="https://nt-mtaiirus.vercel.app" class="card">
-  <div class="card-image-container">
-    <img src="https://i.pinimg.com/564x/42/1f/d0/421fd0b6e0d56e289bab2eeb7be62e06.jpg" alt="Next Toppers">
-  </div>
-  <div class="card-content">
-    <h3>Next Toppers</h3>
-    <p>Explore educational resources and learning materials to enhance your academic journey.</p>
-    <div class="card-meta">
-      <div class="card-rating">
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
+<div class="cards-container" id="cards-container">
+  <!-- Existing card -->
+  <a href="https://nt-mtaiirus.vercel.app" class="card">
+    <div class="card-image-container">
+      <img src="https://i.pinimg.com/564x/42/1f/d0/421fd0b6e0d56e289bab2eeb7be62e06.jpg" alt="Next Toppers">
+    </div>
+    <div class="card-content">
+      <h3>Next Toppers</h3>
+      <p>Explore educational resources and learning materials to enhance your academic journey.</p>
+      <div class="card-meta">
+        <div class="card-rating">
+          <div class="stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+          </div>
+          <span class="rating-value">4.5</span>
         </div>
-        <span class="rating-value">4.5</span>
+        <span class="card-category">Education</span>
       </div>
-      <span class="card-category">Education</span>
+      <div class="card-button"><i class="fas fa-external-link-alt"></i> Visit Now</div>
     </div>
-    <div class="card-button">
-      <i class="fas fa-external-link-alt"></i> Visit Now
+  </a>
+
+  <!-- Physics wala card -->
+  <a href="https://pw-mtaiirus.vercel.app" class="card">
+    <div class="card-image-container">
+      <img src="https://play-lh.googleusercontent.com/x5_bJXO_-4zH95U6-GSmZPHWX7iFe1JPmfGe26kV2fVrZS5Ebi7L_VFIOopAQ3XBDg=w240-h480-rw" alt="Physics wala">
     </div>
-  </div>
-</a>
+    <div class="card-content">
+      <h3>Physics wala</h3>
+      <p>Dive into physics learning materials and resources to master concepts efficiently.</p>
+      <div class="card-meta">
+        <div class="card-rating">
+          <div class="stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+          </div>
+          <span class="rating-value">4.5</span>
+        </div>
+        <span class="card-category">Education</span>
+      </div>
+      <div class="card-button"><i class="fas fa-external-link-alt"></i> Visit Now</div>
+    </div>
+  </a>
+</div>
 
 </body>
 </html>
