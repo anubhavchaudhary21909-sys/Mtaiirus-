@@ -26,17 +26,82 @@ body {
   padding: 20px;
 }
 
-.site-name {
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--accent);
+/* Header with Logo */
+.header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 20px;
+  justify-content: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  flex-direction: column;
+  gap: 15px;
 }
-.site-name i { font-size: 20px; }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(10, 112, 79, 0.05));
+  padding: 12px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  box-shadow: 0 10px 30px rgba(3, 6, 12, 0.3);
+  transition: all 0.3s ease;
+}
+
+.logo-container:hover {
+  transform: translateY(-3px);
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 15px 35px rgba(3, 6, 12, 0.4);
+}
+
+.logo {
+  height: 60px;
+  width: 60px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 2px solid rgba(16, 185, 129, 0.3);
+  padding: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: rotate(5deg);
+}
+
+.site-name {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--accent);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+}
+
+.site-name .tagline {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.store-description {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.6;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 15px 20px;
+  border-radius: 12px;
+  border-left: 3px solid var(--accent);
+}
+
+/* Rest of your existing CSS remains the same */
 .cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -92,13 +157,84 @@ body {
   font-size: 0.75rem;
   font-weight: 600;
 }
+
+/* Calz specific styling */
+.calz-card .card-category {
+  background: rgba(168, 85, 247, 0.15);
+  color: #a855f7;
+}
+
+.calz-card .card-button {
+  background: linear-gradient(90deg, #a855f7, #8b5cf6);
+}
+
+.calz-card:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .logo {
+    height: 50px;
+    width: 50px;
+  }
+  
+  .site-name {
+    font-size: 24px;
+  }
+  
+  .store-description {
+    font-size: 14px;
+    padding: 12px 15px;
+  }
+}
+
+/* Footer */
+.footer {
+  margin-top: 40px;
+  text-align: center;
+  padding: 20px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #0ea5a4;
+  text-decoration: underline;
+}
 </style>
 </head>
 <body>
 
-<div class="site-name">
-  <i class="fab fa-google-play"></i> MTAIIRUS STORE
-</div>
+<!-- Header with Logo -->
+<header class="header">
+  <div class="logo-container">
+    <!-- Your ImgBB logo here -->
+    <img src="https://i.ibb.co/Qvgj7sWb/IMG-20251101-154211.jpg" alt="MTAIIRUS STORE Logo" class="logo">
+    <div class="site-name">
+      MTAIIRUS STORE
+      <span class="tagline">Premium Educational Resources</span>
+    </div>
+  </div>
+  
+  <p class="store-description">
+    Welcome to MTAIIRUS STORE - Your trusted source for premium educational apps and learning resources. 
+    Access quality content to enhance your academic journey and achieve excellence.
+  </p>
+</header>
 
 <div class="cards-container" id="cards-container">
   <!-- Next Toppers Card -->
@@ -146,9 +282,9 @@ body {
   </a>
 
   <!-- Project 45 Card -->
-  <a href="#" class="card" id="project45-card">
+  <a href="https://vplink.in/iUbtL" class="card">
     <div class="card-image-container">
-      <img src="https://via.placeholder.com/320x180?text=Project+45" alt="Project 45">
+      <img src="https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/0c1bca58-80c7-497f-b828-55cfcb474aed.jpeg" alt="Project 45">
     </div>
     <div class="card-content">
       <h3>Project 45</h3>
@@ -166,14 +302,34 @@ body {
       <div class="card-button"><i class="fas fa-external-link-alt"></i> Visit Now</div>
     </div>
   </a>
+
+  <!-- Calz Card -->
+  <a href="https://callz.vercel.app" class="card calz-card">
+    <div class="card-image-container">
+      <img src="https://i.ibb.co/Qvgj7sWb/IMG-20251101-154211.jpg" alt="Calz">
+    </div>
+    <div class="card-content">
+      <h3>Calz</h3>
+      <p>Communication platform for seamless conversations and collaboration.</p>
+      <div class="card-meta">
+        <div class="card-rating">
+          <div class="stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <span class="rating-value">5</span>
+        </div>
+        <span class="card-category">Communication</span>
+      </div>
+      <div class="card-button"><i class="fas fa-external-link-alt"></i> Visit Now</div>
+    </div>
+  </a>
 </div>
 
-<script>
-  // Placeholder: replace Project 45 URL and image later
-  const project45Card = document.getElementById('project45-card');
-  project45Card.href = 'https://vplink.in/iUbtL';
-  project45Card.querySelector('img').src = 'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/0c1bca58-80c7-497f-b828-55cfcb474aed.jpeg';
-</script>
+<footer class="footer">
+  <p>© 2024 MTAIIRUS STORE. All rights reserved.</p>
+  <p>Premium Educational Resources Platform</p>
+</footer>
 
 </body>
 </html>
