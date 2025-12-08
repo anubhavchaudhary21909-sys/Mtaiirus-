@@ -26,7 +26,6 @@ body {
   padding: 20px;
 }
 
-/* Header with Logo */
 .header {
   display: flex;
   align-items: center;
@@ -101,7 +100,6 @@ body {
   border-left: 3px solid var(--accent);
 }
 
-/* Rest of your existing CSS remains the same */
 .cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -158,7 +156,6 @@ body {
   font-weight: 600;
 }
 
-/* Calz specific styling */
 .calz-card .card-category {
   background: rgba(168, 85, 247, 0.15);
   color: #a855f7;
@@ -172,7 +169,19 @@ body {
   border-color: rgba(168, 85, 247, 0.4);
 }
 
-/* Responsive adjustments */
+.code-storage-card .card-category {
+  background: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+}
+
+.code-storage-card .card-button {
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+
+.code-storage-card:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
 @media (max-width: 768px) {
   .logo-container {
     flex-direction: column;
@@ -195,7 +204,6 @@ body {
   }
 }
 
-/* Footer */
 .footer {
   margin-top: 40px;
   text-align: center;
@@ -219,10 +227,8 @@ body {
 </head>
 <body>
 
-<!-- Header with Logo -->
 <header class="header">
   <div class="logo-container">
-    <!-- Your ImgBB logo here -->
     <img src="https://i.ibb.co/Qvgj7sWb/IMG-20251101-154211.jpg" alt="MTAIIRUS STORE Logo" class="logo">
     <div class="site-name">
       MTAIIRUS STORE
@@ -237,7 +243,6 @@ body {
 </header>
 
 <div class="cards-container" id="cards-container">
-  <!-- Next Toppers Card -->
   <a href="https://nt-mtaiirus.vercel.app" class="card">
     <div class="card-image-container">
       <img src="https://i.pinimg.com/564x/42/1f/d0/421fd0b6e0d56e289bab2eeb7be62e06.jpg" alt="Next Toppers">
@@ -259,7 +264,6 @@ body {
     </div>
   </a>
 
-  <!-- Physics Wala Card -->
   <a href="https://pw-mtaiirus.vercel.app" class="card">
     <div class="card-image-container">
       <img src="https://play-lh.googleusercontent.com/x5_bJXO_-4zH95U6-GSmZPHWX7iFe1JPmfGe26kV2fVrZS5Ebi7L_VFIOopAQ3XBDg=w240-h480-rw" alt="Physics Wala">
@@ -281,7 +285,6 @@ body {
     </div>
   </a>
 
-  <!-- Project 45 Card -->
   <a href="https://vplink.in/iUbtL" class="card">
     <div class="card-image-container">
       <img src="https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/0c1bca58-80c7-497f-b828-55cfcb474aed.jpeg" alt="Project 45">
@@ -303,7 +306,6 @@ body {
     </div>
   </a>
 
-  <!-- Calz Card -->
   <a href="https://callz.vercel.app" class="card calz-card">
     <div class="card-image-container">
       <img src="https://i.ibb.co/Qvgj7sWb/IMG-20251101-154211.jpg" alt="Calz">
@@ -320,6 +322,27 @@ body {
           <span class="rating-value">5</span>
         </div>
         <span class="card-category">Communication</span>
+      </div>
+      <div class="card-button"><i class="fas fa-external-link-alt"></i> Visit Now</div>
+    </div>
+  </a>
+
+  <a href="https://ohitgoat.vercel.app" class="card code-storage-card">
+    <div class="card-image-container">
+      <img src="https://i.ibb.co/5gxrTTRR/a-minimalist-app-icon-featuring-a-rounde-g4-Ay-OPI0-SPa58-Dp-GKVf2dg-s-Tn-Cr-EBRVq-Phyi-Mjs6e-Nw.jpg" alt="Code Storage APP">
+    </div>
+    <div class="card-content">
+      <h3>Code Storage APP</h3>
+      <p>Store, organize, and manage your code snippets efficiently in one secure place.</p>
+      <div class="card-meta">
+        <div class="card-rating">
+          <div class="stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+          </div>
+          <span class="rating-value">5</span>
+        </div>
+        <span class="card-category">Development</span>
       </div>
       <div class="card-button"><i class="fas fa-external-link-alt"></i> Visit Now</div>
     </div>
