@@ -469,7 +469,7 @@ body {
 <!-- Quick Stats -->
 <div class="stats-bar">
   <div class="stat-item">
-    <span class="stat-number" id="total-apps">5</span>
+    <span class="stat-number" id="total-apps">6</span>
     <span class="stat-label">Total Apps</span>
   </div>
   <div class="stat-item">
@@ -646,6 +646,28 @@ body {
       <div class="card-button"><i class="fas fa-external-link-alt"></i> Visit Now</div>
     </div>
   </a>
+
+  <!-- Xlonez Card -->
+  <a href="https://Xlonez.vercel.app" class="card" data-category="development" data-name="Xlonez">
+    <div class="card-image-container">
+      <img src="https://i.ibb.co/C3sZXhc8/1000043382.jpg" alt="Xlonez">
+    </div>
+    <div class="card-content">
+      <h3>Xlonez</h3>
+      <p>Explore this platform for development resources and tools to enhance your projects.</p>
+      <div class="card-meta">
+        <div class="card-rating">
+          <div class="stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+          </div>
+          <span class="rating-value">5</span>
+        </div>
+        <span class="card-category">Development</span>
+      </div>
+      <div class="card-button"><i class="fas fa-external-link-alt"></i> Visit Now</div>
+    </div>
+  </a>
 </div>
 
 <!-- Back to Top Button -->
@@ -693,9 +715,7 @@ const toastMessage = document.getElementById('toastMessage');
 
 categoryButtons.forEach(button => {
   button.addEventListener('click', function() {
-    // Remove active class from all buttons
     categoryButtons.forEach(btn => btn.classList.remove('active'));
-    // Add active class to clicked button
     this.classList.add('active');
     
     const category = this.getAttribute('data-category');
@@ -710,15 +730,12 @@ categoryButtons.forEach(button => {
       }
     });
     
-    // Show toast notification
     toastMessage.textContent = category === 'all' 
       ? 'Showing all apps' 
       : `Filtered by ${category}`;
     
     toast.classList.add('show');
-    setTimeout(() => {
-      toast.classList.remove('show');
-    }, 2000);
+    setTimeout(() => toast.classList.remove('show'), 2000);
     
     updateStats();
   });
@@ -726,7 +743,6 @@ categoryButtons.forEach(button => {
 
 // Back to Top Button
 const backToTop = document.getElementById('backToTop');
-
 window.addEventListener('scroll', function() {
   if (window.pageYOffset > 300) {
     backToTop.classList.add('visible');
@@ -734,12 +750,8 @@ window.addEventListener('scroll', function() {
     backToTop.classList.remove('visible');
   }
 });
-
 backToTop.addEventListener('click', function() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 // Update stats based on visible cards
@@ -747,12 +759,8 @@ function updateStats() {
   const visibleCards = document.querySelectorAll('.card[style="display: block"], .card:not([style])');
   const totalApps = document.getElementById('total-apps');
   totalApps.textContent = visibleCards.length;
-  
-  // Animate the number change
   totalApps.style.transform = 'scale(1.2)';
-  setTimeout(() => {
-    totalApps.style.transform = 'scale(1)';
-  }, 300);
+  setTimeout(() => totalApps.style.transform = 'scale(1)', 300);
 }
 
 // Card click tracking
@@ -760,7 +768,6 @@ cards.forEach(card => {
   card.addEventListener('click', function(e) {
     const appName = this.getAttribute('data-name');
     console.log(`Navigating to ${appName}`);
-    // In a real application, you might want to send analytics here
   });
 });
 
