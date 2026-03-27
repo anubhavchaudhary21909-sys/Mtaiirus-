@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MTAIIRUS STORE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>MTAIIRUS STORE | myapp Edition</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #071226;
@@ -16,6 +16,7 @@
   --text-primary: #e6eef6;
   --text-secondary: #9ca3af;
   --danger: #ef4444;
+  --play-gradient: linear-gradient(135deg, #0f9b0f, #1a73e8, #ea4335, #fbbc05);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -101,7 +102,7 @@ body {
   border-left: 3px solid var(--accent);
 }
 
-/* NEW FEATURES SECTION */
+/* FEATURES SECTION */
 .features-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -304,6 +305,21 @@ body {
   border-color: rgba(59, 130, 246, 0.4);
 }
 
+/* myapp special badge - custom play store accent */
+.myapp-card .card-category {
+  background: linear-gradient(135deg, rgba(66,133,244,0.2), rgba(234,67,53,0.2));
+  color: #fbbc05;
+  font-weight: 700;
+}
+.myapp-card .card-button {
+  background: linear-gradient(90deg, #4285F4, #EA4335);
+  color: white;
+  letter-spacing: 0.3px;
+}
+.myapp-card:hover {
+  border-color: #fbbc05;
+}
+
 /* Quick Stats Bar */
 .stats-bar {
   display: flex;
@@ -313,10 +329,13 @@ body {
   padding: 20px;
   margin: 30px 0;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .stat-item {
   text-align: center;
+  min-width: 100px;
 }
 
 .stat-number {
@@ -324,6 +343,7 @@ body {
   font-weight: 700;
   color: var(--accent);
   display: block;
+  transition: transform 0.2s;
 }
 
 .stat-label {
@@ -369,7 +389,8 @@ body {
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%) translateY(100px);
-  background: rgba(16, 185, 129, 0.9);
+  background: rgba(16, 185, 129, 0.95);
+  backdrop-filter: blur(8px);
   color: white;
   padding: 15px 25px;
   border-radius: 12px;
@@ -380,6 +401,7 @@ body {
   opacity: 0;
   transition: all 0.3s ease;
   box-shadow: 0 10px 25px rgba(3, 6, 12, 0.3);
+  font-weight: 500;
 }
 
 .toast.show {
@@ -410,8 +432,8 @@ body {
   }
   
   .stats-bar {
-    flex-direction: column;
-    gap: 20px;
+    flex-direction: row;
+    gap: 15px;
   }
   
   .features-container {
@@ -423,6 +445,9 @@ body {
     right: 20px;
     width: 45px;
     height: 45px;
+  }
+  .stat-item {
+    min-width: 70px;
   }
 }
 
@@ -456,28 +481,28 @@ body {
     <img src="https://i.ibb.co/Qvgj7sWb/IMG-20251101-154211.jpg" alt="MTAIIRUS STORE Logo" class="logo">
     <div class="site-name">
       MTAIIRUS STORE
-      <span class="tagline">Premium Educational Resources</span>
+      <span class="tagline">Premium Educational Resources + myapp</span>
     </div>
   </div>
   
   <p class="store-description">
-    Welcome to MTAIIRUS STORE - Your trusted source for premium educational apps and learning resources. 
-    Access quality content to enhance your academic journey and achieve excellence.
+    Welcome to MTAIIRUS STORE - Your trusted source for premium educational apps, dev tools, and now the exclusive <strong>myapp</strong> with custom Play Store experience. 
+    Quality content, seamless access.
   </p>
 </header>
 
-<!-- Quick Stats -->
+<!-- Quick Stats (dynamic values) -->
 <div class="stats-bar">
   <div class="stat-item">
-    <span class="stat-number" id="total-apps">6</span>
+    <span class="stat-number" id="total-apps">0</span>
     <span class="stat-label">Total Apps</span>
   </div>
   <div class="stat-item">
-    <span class="stat-number">4.8</span>
+    <span class="stat-number" id="avg-rating">0.0</span>
     <span class="stat-label">Avg Rating</span>
   </div>
   <div class="stat-item">
-    <span class="stat-number">3</span>
+    <span class="stat-number" id="categories-count">0</span>
     <span class="stat-label">Categories</span>
   </div>
   <div class="stat-item">
@@ -486,36 +511,25 @@ body {
   </div>
 </div>
 
-<!-- NEW: Features Section -->
+<!-- Feature Highlights -->
 <div class="features-container">
   <div class="feature-card">
-    <div class="feature-icon">
-      <i class="fas fa-shield-alt"></i>
-    </div>
+    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
     <h3>Secure Access</h3>
     <p>All resources are verified and secured for safe learning experience</p>
   </div>
-  
   <div class="feature-card">
-    <div class="feature-icon">
-      <i class="fas fa-bolt"></i>
-    </div>
+    <div class="feature-icon"><i class="fas fa-bolt"></i></div>
     <h3>Fast Loading</h3>
     <p>Optimized performance for quick access to all educational resources</p>
   </div>
-  
   <div class="feature-card">
-    <div class="feature-icon">
-      <i class="fas fa-mobile-alt"></i>
-    </div>
+    <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
     <h3>Mobile Friendly</h3>
     <p>Access all resources seamlessly on any device, anywhere</p>
   </div>
-  
   <div class="feature-card">
-    <div class="feature-icon">
-      <i class="fas fa-sync"></i>
-    </div>
+    <div class="feature-icon"><i class="fas fa-sync"></i></div>
     <h3>Regular Updates</h3>
     <p>Constantly updated with new resources and improvements</p>
   </div>
@@ -527,16 +541,38 @@ body {
   <input type="text" class="search-box" id="searchBox" placeholder="Search apps by name or category...">
 </div>
 
-<!-- Category Filter -->
+<!-- Category Filter (includes new Utility category) -->
 <div class="category-filter">
   <button class="category-btn active" data-category="all">All Apps</button>
   <button class="category-btn" data-category="education">Education</button>
   <button class="category-btn" data-category="communication">Communication</button>
   <button class="category-btn" data-category="development">Development</button>
+  <button class="category-btn" data-category="utility">⚡ Utility</button>
 </div>
 
 <!-- Cards Container -->
 <div class="cards-container" id="cards-container">
+  <!-- NEW CARD: myapp with Custom Play Store Logo - PLACED AT TOP -->
+  <a href="https://mtaiirus.vercel.app/myapp" class="card myapp-card" data-category="utility" data-name="myapp">
+    <div class="card-image-container">
+      <!-- Custom Play Store style SVG logo: vibrant colors + play button + myapp text -->
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='url(%23grad)'/%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%234285F4'/%3E%3Cstop offset='50%25' stop-color='%23EA4335'/%3E%3Cstop offset='100%25' stop-color='%23FBBC05'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='200' cy='140' r='70' fill='white' opacity='0.2'/%3E%3Cpolygon points='170,100 170,180 250,140' fill='white' /%3E%3Ctext x='200' y='280' font-size='48' font-family='Arial, sans-serif' font-weight='bold' fill='white' text-anchor='middle' letter-spacing='2'%3Emyapp%3C/text%3E%3Ctext x='200' y='340' font-size='24' fill='rgba(255,255,240,0.9)' text-anchor='middle'%3EPLAY EXCLUSIVE%3C/text%3E%3C/svg%3E"
+           alt="Custom Play Store Logo - myapp" style="object-fit: cover;">
+    </div>
+    <div class="card-content">
+      <h3>myapp</h3>
+      <p>Ultimate utility app with premium tools, smooth UI & exclusive Play Store features. Get the best experience now.</p>
+      <div class="card-meta">
+        <div class="card-rating">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <span class="rating-value">5.0</span>
+        </div>
+        <span class="card-category">⚡ Utility</span>
+      </div>
+      <div class="card-button"><i class="fab fa-google-play"></i> Get on Play Store</div>
+    </div>
+  </a>
+
   <!-- Next Toppers Card -->
   <a href="https://nt-mtaiirus.vercel.app" class="card" data-category="education" data-name="Next Toppers">
     <div class="card-image-container">
@@ -546,13 +582,7 @@ body {
       <h3>Next Toppers</h3>
       <p>Explore educational resources and learning materials to enhance your academic journey.</p>
       <div class="card-meta">
-        <div class="card-rating">
-          <div class="stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-          </div>
-          <span class="rating-value">5</span>
-        </div>
+        <div class="card-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><span class="rating-value">5.0</span></div>
         <span class="card-category">Education</span>
       </div>
       <div class="card-button"><i class="fas fa-external-link-alt"></i> Visit Now</div>
@@ -567,16 +597,7 @@ body {
     <div class="card-content">
       <h3>Physics Wala</h3>
       <p>Dive into physics learning materials and resources to master concepts efficiently.</p>
-      <div class="card-meta">
-        <div class="card-rating">
-          <div class="stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-          </div>
-          <span class="rating-value">5</span>
-        </div>
-        <span class="card-category">Education</span>
-      </div>
+      <div class="card-meta"><div class="card-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><span class="rating-value">5.0</span></div><span class="card-category">Education</span></div>
       <div class="card-button"><i class="fas fa-external-link-alt"></i> Visit Now</div>
     </div>
   </a>
@@ -589,16 +610,7 @@ body {
     <div class="card-content">
       <h3>Project 45</h3>
       <p>Explore all Project 45 content, resources, and learning materials in one place.</p>
-      <div class="card-meta">
-        <div class="card-rating">
-          <div class="stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-          </div>
-          <span class="rating-value">5</span>
-        </div>
-        <span class="card-category">Education</span>
-      </div>
+      <div class="card-meta"><div class="card-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><span class="rating-value">5.0</span></div><span class="card-category">Education</span></div>
       <div class="card-button"><i class="fas fa-external-link-alt"></i> Visit Now</div>
     </div>
   </a>
@@ -611,16 +623,7 @@ body {
     <div class="card-content">
       <h3>Calz</h3>
       <p>Communication platform for seamless conversations and collaboration.</p>
-      <div class="card-meta">
-        <div class="card-rating">
-          <div class="stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <span class="rating-value">5</span>
-        </div>
-        <span class="card-category">Communication</span>
-      </div>
+      <div class="card-meta"><div class="card-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><span class="rating-value">5.0</span></div><span class="card-category">Communication</span></div>
       <div class="card-button"><i class="fas fa-external-link-alt"></i> Visit Now</div>
     </div>
   </a>
@@ -633,16 +636,7 @@ body {
     <div class="card-content">
       <h3>Code Storage APP</h3>
       <p>Store, organize, and manage your code snippets efficiently in one secure place.</p>
-      <div class="card-meta">
-        <div class="card-rating">
-          <div class="stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-          </div>
-          <span class="rating-value">5</span>
-        </div>
-        <span class="card-category">Development</span>
-      </div>
+      <div class="card-meta"><div class="card-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><span class="rating-value">5.0</span></div><span class="card-category">Development</span></div>
       <div class="card-button"><i class="fas fa-external-link-alt"></i> Visit Now</div>
     </div>
   </a>
@@ -655,16 +649,7 @@ body {
     <div class="card-content">
       <h3>Xlonez</h3>
       <p>Explore this platform for development resources and tools to enhance your projects.</p>
-      <div class="card-meta">
-        <div class="card-rating">
-          <div class="stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-          </div>
-          <span class="rating-value">5</span>
-        </div>
-        <span class="card-category">Development</span>
-      </div>
+      <div class="card-meta"><div class="card-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><span class="rating-value">5.0</span></div><span class="card-category">Development</span></div>
       <div class="card-button"><i class="fas fa-external-link-alt"></i> Visit Now</div>
     </div>
   </a>
@@ -682,67 +667,107 @@ body {
 </div>
 
 <footer class="footer">
-  <p>© 2024 MTAIIRUS STORE. All rights reserved.</p>
-  <p>Premium Educational Resources Platform</p>
+  <p>© 2025 MTAIIRUS STORE. All rights reserved. | myapp - custom Play Store edition</p>
+  <p>Premium Educational & Utility Resources Platform</p>
 </footer>
 
 <script>
-// Search Functionality
+// DOM elements
 const searchBox = document.getElementById('searchBox');
 const cards = document.querySelectorAll('.card');
+const categoryButtons = document.querySelectorAll('.category-btn');
+const toast = document.getElementById('toast');
+const toastMessage = document.getElementById('toastMessage');
+const backToTop = document.getElementById('backToTop');
 
-searchBox.addEventListener('input', function(e) {
-  const searchTerm = e.target.value.toLowerCase();
+// Stats elements
+const totalAppsSpan = document.getElementById('total-apps');
+const avgRatingSpan = document.getElementById('avg-rating');
+const categoriesCountSpan = document.getElementById('categories-count');
+
+// Helper: compute dynamic stats (total apps, average rating, unique categories)
+function updateDynamicStats() {
+  // total apps (all cards, not filtered)
+  const totalCards = cards.length;
+  totalAppsSpan.textContent = totalCards;
+  totalAppsSpan.style.transform = 'scale(1.2)';
+  setTimeout(() => { if(totalAppsSpan) totalAppsSpan.style.transform = 'scale(1)'; }, 200);
+  
+  // average rating: grab all rating values from .rating-value inside each card
+  let ratingSum = 0;
+  let validRatings = 0;
+  cards.forEach(card => {
+    const ratingSpan = card.querySelector('.rating-value');
+    if (ratingSpan) {
+      let ratingVal = parseFloat(ratingSpan.textContent);
+      if (!isNaN(ratingVal)) {
+        ratingSum += ratingVal;
+        validRatings++;
+      }
+    }
+  });
+  const avg = validRatings ? (ratingSum / validRatings).toFixed(1) : '4.8';
+  avgRatingSpan.textContent = avg;
+  
+  // unique categories
+  const categoriesSet = new Set();
+  cards.forEach(card => {
+    const cat = card.getAttribute('data-category');
+    if (cat) categoriesSet.add(cat);
+  });
+  categoriesCountSpan.textContent = categoriesSet.size;
+}
+
+// Filter & search logic (respects both search input and active category)
+let activeCategory = 'all';  // current active category filter
+
+function filterCards() {
+  const searchTerm = searchBox.value.toLowerCase();
   
   cards.forEach(card => {
     const cardName = card.getAttribute('data-name').toLowerCase();
     const cardCategory = card.getAttribute('data-category').toLowerCase();
+    const matchesSearch = cardName.includes(searchTerm) || cardCategory.includes(searchTerm);
+    const matchesCategory = (activeCategory === 'all') || (cardCategory === activeCategory);
     
-    if (cardName.includes(searchTerm) || cardCategory.includes(searchTerm)) {
+    if (matchesSearch && matchesCategory) {
       card.style.display = 'block';
     } else {
       card.style.display = 'none';
     }
   });
   
-  updateStats();
-});
+  // toast indication for filter (avoid spam on every search)
+  // we only show toast for category clicks, but we can also give subtle feedback for search? optional, we manage via category toast.
+}
 
-// Category Filter
-const categoryButtons = document.querySelectorAll('.category-btn');
-const toast = document.getElementById('toast');
-const toastMessage = document.getElementById('toastMessage');
-
+// Category click handler
 categoryButtons.forEach(button => {
   button.addEventListener('click', function() {
     categoryButtons.forEach(btn => btn.classList.remove('active'));
     this.classList.add('active');
     
     const category = this.getAttribute('data-category');
+    activeCategory = category;
     
-    cards.forEach(card => {
-      const cardCategory = card.getAttribute('data-category');
-      
-      if (category === 'all' || cardCategory === category) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
-    });
+    // Apply filter
+    filterCards();
     
-    toastMessage.textContent = category === 'all' 
-      ? 'Showing all apps' 
-      : `Filtered by ${category}`;
-    
+    // Toast feedback
+    let displayCategory = category === 'all' ? 'all apps' : category;
+    toastMessage.textContent = category === 'all' ? '✨ Showing all apps' : `📱 Filtered by ${displayCategory.toUpperCase()}`;
     toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2000);
-    
-    updateStats();
+    setTimeout(() => toast.classList.remove('show'), 1800);
   });
 });
 
+// Search input event
+searchBox.addEventListener('input', function() {
+  filterCards();
+  // no extra toast spam
+});
+
 // Back to Top Button
-const backToTop = document.getElementById('backToTop');
 window.addEventListener('scroll', function() {
   if (window.pageYOffset > 300) {
     backToTop.classList.add('visible');
@@ -754,25 +779,23 @@ backToTop.addEventListener('click', function() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Update stats based on visible cards
-function updateStats() {
-  const visibleCards = document.querySelectorAll('.card[style="display: block"], .card:not([style])');
-  const totalApps = document.getElementById('total-apps');
-  totalApps.textContent = visibleCards.length;
-  totalApps.style.transform = 'scale(1.2)';
-  setTimeout(() => totalApps.style.transform = 'scale(1)', 300);
-}
-
-// Card click tracking
+// Optional: card click tracking & graceful redirect
 cards.forEach(card => {
   card.addEventListener('click', function(e) {
     const appName = this.getAttribute('data-name');
-    console.log(`Navigating to ${appName}`);
+    console.log(`📲 Navigating to: ${appName} (${this.href})`);
+    // letting default anchor behavior work
   });
 });
 
-// Initialize
-updateStats();
+// initial stats load and display consistency
+updateDynamicStats();
+filterCards();   // ensure all cards visible by default
+
+// Also re-run stats after slight delay to ensure rating extraction (safe)
+setTimeout(() => {
+  updateDynamicStats();
+}, 100);
 </script>
 </body>
 </html>
