@@ -796,5 +796,26 @@ setTimeout(() => {
   updateDynamicStats();
 }, 100);
 </script>
-</body>
+// Disable right click
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+// Disable text selection
+document.addEventListener("selectstart", e => e.preventDefault());
+
+// Disable dragging
+document.addEventListener("dragstart", e => e.preventDefault());
+
+// Block keys (F12, Ctrl+Shift+I/J/C/U)
+document.addEventListener("keydown", e => {
+  if (
+    e.key === "F12" ||
+    (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key.toUpperCase())) ||
+    (e.ctrlKey && e.key.toUpperCase() === "U")
+  ) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+});
+</script>  
+<body>
 </html>
