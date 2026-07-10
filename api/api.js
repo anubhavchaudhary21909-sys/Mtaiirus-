@@ -9,7 +9,7 @@ export default function handler(req, res) {
   }
 
   // --- Data store ---
-  const domains = {
+  const apps = {
     gyanbindu: {
       id: "gyanbindu",
       domain: "gyanbinduapi.appx.co.in",
@@ -58,23 +58,23 @@ export default function handler(req, res) {
     "pdf_view_api": "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
     "pdf_dow_api": "https://pdf-appx.edumate.life/?url="
 }
-    // Add more entries below, one per domainId:
+    // Add more entries below, one per app:
     // 9999: { id: "9999", domain: "...", name: "...", "stylishName(brand)": "...", image: "", token: "", courseid: 0, player_url: "", pdf_view_api: "...", pdf_dow_api: "..." },
   };
 
   // --- Validate params ---
-  const domainId = req.query.domainId;
+  const app = req.query.app;
   const i = req.query.i; // reserved param, currently unused in response
 
-  if (!domainId) {
-    res.status(400).json({ error: "Missing required parameter: domainId" });
+  if (!app) {
+    res.status(400).json({ error: "Missing required parameter: app" });
     return;
   }
 
-  const entry = domains[domainId];
+  const entry = apps[app];
 
   if (!entry) {
-    res.status(404).json({ error: "Domain not found" });
+    res.status(404).json({ error: "app not found" });
     return;
   }
 
