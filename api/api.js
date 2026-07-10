@@ -10,8 +10,8 @@ export default function handler(req, res) {
 
   // --- Data store ---
   const domains = {
-    3377: {
-      id: "3377",
+    gyanbindu: {
+      id: "gyanbindu",
       domain: "gyanbinduapi.appx.co.in",
       name: "GYAN BINDU",
       "stylishName(brand)": "GYAN +BINDU",
@@ -22,8 +22,8 @@ export default function handler(req, res) {
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
-    8768: {
-      id: "8768",
+    rozgar: {
+      id: "rozgar",
       domain: "rozgarapinew.teachx.in",
       name: "ROJGAR WITH ANKIT",
       "stylishName(brand)": "RW +ANKIT",
@@ -33,7 +33,31 @@ export default function handler(req, res) {
       player_url: "https://mute-butterfly-7f12.techdesh5.workers.dev/player?url=",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
-    }
+    },
+    winnersinstitute: {
+  id: "winnersinstitute",
+  domain: "winnersinstituteapi.cloudflare.net.in",
+  name: "Winner Institute",
+  "stylishName(brand)": "Winner Institute +INDORE",
+  image: "",
+  token: "",
+  courseid: 156,
+  player_url: "https://mute-butterfly-7f12.techdesh5.workers.dev/player?url=",
+  pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
+  pdf_dow_api: "https://pdf-appx.edumate.life/?url="
+},
+ physicsumeshrajori: {
+    "id": "physicsumeshrajori",
+    "domain": "physicsumeshrajoriaapi.classx.co.in",
+    "name": "PHYSICS UMESH",
+    "stylishName(brand)": "PHYSICS WITH+UMESH RAJORIA",
+    "image": "",
+    "token": "",
+    "courseid": 184,
+    "player_url": "",
+    "pdf_view_api": "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
+    "pdf_dow_api": "https://pdf-appx.edumate.life/?url="
+}
     // Add more entries below, one per domainId:
     // 9999: { id: "9999", domain: "...", name: "...", "stylishName(brand)": "...", image: "", token: "", courseid: 0, player_url: "", pdf_view_api: "...", pdf_dow_api: "..." },
   };
