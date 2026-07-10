@@ -18,7 +18,7 @@ export default function handler(req, res) {
       image: "",
       token: "",
       courseid: 37,
-      player_url: "/player.html",
+      player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
@@ -30,7 +30,7 @@ export default function handler(req, res) {
       image: "",
       token: "",
       courseid: 184,
-      player_url: "/player.html",
+      player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
@@ -42,7 +42,7 @@ export default function handler(req, res) {
       image: "",
       token: "",
       courseid: 156,
-      player_url: "/player.html",
+      player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
@@ -54,7 +54,7 @@ export default function handler(req, res) {
       image: "",
       token: "",
       courseid: 184,
-      player_url: "/player.html",
+      player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
@@ -66,7 +66,7 @@ export default function handler(req, res) {
       image: "",
       token: "",
       courseid: 184,
-      player_url: "/player.html",
+      player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
@@ -78,7 +78,7 @@ export default function handler(req, res) {
       image: "",
       token: "",
       courseid: 184,
-      player_url: "/player.html",
+      player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
@@ -90,7 +90,7 @@ export default function handler(req, res) {
       image: "",
       token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjI2NzExOSIsInRpbWVzdGFtcCI6MTc3ODkzNTQxMiwiaXZfdmVyIjoyLCJzZXNzaW9uIjoiZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKSVV6STFOaUo5LmV5SnBaQ0k2SWpJMk56RXhPU0lzSW1WdFlXbHNJam9pYlhWclpYTm9PR3BoY0RJd01EWkFaMjFoYVd3dVkyOXRJaXdpYm1GdFpTSTZJazExYTJWemFDQkRhRzkxWkdoaGNua2lMQ0owWlc1aGJuUlVlWEJsSWpvaWRYTmxjaUlzSW5SbGJtRnVkRTVoYldVaU9pSmliMjl6ZEdWeVlXTmhaR1Z0ZVY5a1lpSXNJblJsYm1GdWRFbGtJam9pSWl3aVpHbHpjRzl6WVdKc1pTSTZabUZzYzJWOS5QdWFCUUlyS185SUZWWkJWRFhCcDRkV25kMkpjUnRfSEY5YlRhVERJcEVNIn0.0E1mnrHSTqTecyyY851k4Z2weOSdEg99LYkGA94fxF4",
       courseid: 184,
-      player_url: "/player.html",
+      player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
@@ -102,7 +102,7 @@ export default function handler(req, res) {
       image: "",
       token: "",
       courseid: 184,
-      player_url: "/player.html",
+      player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
@@ -114,7 +114,7 @@ export default function handler(req, res) {
       image: "",
       token: "",
       courseid: 59,
-      player_url: "/player.html",
+      player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
@@ -126,7 +126,7 @@ export default function handler(req, res) {
       image: "",
       token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjE0NDA2MzA2IiwidGltZXN0YW1wIjoxNzc3OTk5NjgzLCJpdl92ZXIiOjEsInNlc3Npb24iOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuZXlKcFpDSTZJakUwTkRBMk16QTJJaXdpWlcxaGFXd2lPaUpoY201cGFHWjBZM2xtWkVCbWFHbHRiUzVqYjIwaUxDSnVZVzFsSWpvaVJYQmhjblZ1SUhOb1lYSnVZU0lzSW5SbGJtRnVkRlI1Y0dVaU9pSjFjMlZ5SWl3aWRHVnVZVzUwVG1GdFpTSTZJbkp2ZW1kaGNsOWtZaUlzSW5SbGJtRnVkRWxrSWpvaUlpd2laR2x6Y0c5ellXSnNaU0k2Wm1Gc2MyVjkuUVF3azVBSTZHYXZ0M2hFZHhrbkR5LUhBeDZ4ME1MOW9sQ2pwQnpxQW9XMCJ9.1Do6ZcvqA6XS662YgywMvHCjQmMLfwp55PIK1TJ8B7w",
       courseid: 184,
-      player_url: "/player.html",
+      player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
@@ -138,7 +138,7 @@ export default function handler(req, res) {
       image: "",
       token: "",
       courseid: 184,
-      player_url: "/player.html",
+      player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
@@ -150,7 +150,7 @@ export default function handler(req, res) {
       image: "",
       token: "",
       courseid: 184,
-      player_url: "/player.html",
+      player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
@@ -162,7 +162,7 @@ export default function handler(req, res) {
       image: "",
       token: "",
       courseid: 184,
-      player_url: "/player.html",
+      player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
@@ -174,7 +174,7 @@ export default function handler(req, res) {
       image: "",
       token: "",
       courseid: 184,
-      player_url: "/player.html",
+      player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
@@ -186,7 +186,7 @@ export default function handler(req, res) {
       image: "",
       token: "",
       courseid: 184,
-      player_url: "/player.html",
+      player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
@@ -198,7 +198,7 @@ export default function handler(req, res) {
       image: "",
       token: "",
       courseid: 184,
-      player_url: "/player.html",
+      player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     }
