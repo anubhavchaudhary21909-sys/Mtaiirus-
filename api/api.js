@@ -22,6 +22,18 @@ export default function handler(req, res) {
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
+  aash: {
+    "id": "aash",
+    "domain": "aashapi.appx.co.in",
+    "name": "AASH OFFICIAL",
+    "stylishName(brand)": "AASH +OFFICIAL",
+    "image": "",
+    "token": "",
+    "courseid": 552,
+    "player_url": "../imp/player",
+    "pdf_view_api": "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
+    "pdf_dow_api": "https://pdf-appx.edumate.life/?url="
+    },
     rozgar: {
       id: "rozgar",
       domain: "rozgarapinew.teachx.in",
