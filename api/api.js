@@ -123,7 +123,7 @@ export default function handler(req, res) {
       domain: "rozgarapinew.teachx.in",
       name: "ROJGAR WITH ANKIT",
       "stylishName(brand)": "RW +ANKIT",
-      image: "",
+      image: "https://mtaiirus-v2.lovable.app/__l5e/assets-v1/87aad433-8d08-44d9-be73-30658f34b830/mtaiirus-logo.jpg",
       token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjE0NDA2MzA2IiwidGltZXN0YW1wIjoxNzc3OTk5NjgzLCJpdl92ZXIiOjEsInNlc3Npb24iOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuZXlKcFpDSTZJakUwTkRBMk16QTJJaXdpWlcxaGFXd2lPaUpoY201cGFHWjBZM2xtWkVCbWFHbHRiUzVqYjIwaUxDSnVZVzFsSWpvaVJYQmhjblZ1SUhOb1lYSnVZU0lzSW5SbGJtRnVkRlI1Y0dVaU9pSjFjMlZ5SWl3aWRHVnVZVzUwVG1GdFpTSTZJbkp2ZW1kaGNsOWtZaUlzSW5SbGJtRnVkRWxrSWpvaUlpd2laR2x6Y0c5ellXSnNaU0k2Wm1Gc2MyVjkuUVF3azVBSTZHYXZ0M2hFZHhrbkR5LUhBeDZ4ME1MOW9sQ2pwQnpxQW9XMCJ9.1Do6ZcvqA6XS662YgywMvHCjQmMLfwp55PIK1TJ8B7w",
       courseid: 184,
       player_url: "../imp/player.html",
