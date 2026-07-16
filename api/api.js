@@ -22,41 +22,41 @@ export default function handler(req, res) {
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
-  lakshay: {
-    "id": "lakshay",
-    "domain": "lakshyaclassesapi.appx.co.in",
-    "name": "LAKSHAY CLASSES",
-    "stylishName(brand)": "LAKSHAY +CLASSES",
-    "image": "",
-    "token": "",
-    "courseid": 732,
-    "player_url": "../imp/player",
-    "pdf_view_api": "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-    "pdf_dow_api": "https://pdf-appx.edumate.life/?url="
-} 
-  pa: {
-    "id": "pa",
-    "domain": "parmaracademyapi.classx.co.in",
-    "name": "PARAM +ACADEMY",
-    "stylishName(brand)": "PARAM +ACADEMY",
-    "image": "",
-    "token": "",
-    "courseid": 40,
-    "player_url": "../imp/player",
-    "pdf_view_api": "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-    "pdf_dow_api": "https://pdf-appx.edumate.life/?url="
-},
-  aash: {
-    "id": "aash",
-    "domain": "aashapi.appx.co.in",
-    "name": "AASH +OFFICIAL",
-    "stylishName(brand)": "AASH +OFFICIAL",
-    "image": "",
-    "token": "",
-    "courseid": 552,
-    "player_url": "../imp/player",
-    "pdf_view_api": "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-    "pdf_dow_api": "https://pdf-appx.edumate.life/?url="
+    lakshay: {
+      "id": "lakshay",
+      "domain": "lakshyaclassesapi.appx.co.in",
+      "name": "LAKSHAY CLASSES",
+      "stylishName(brand)": "LAKSHAY +CLASSES",
+      "image": "",
+      "token": "",
+      "courseid": 732,
+      "player_url": "../imp/player",
+      "pdf_view_api": "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
+      "pdf_dow_api": "https://pdf-appx.edumate.life/?url="
+    }, // <-- ADDED COMMA HERE
+    pa: {
+      "id": "pa",
+      "domain": "parmaracademyapi.classx.co.in",
+      "name": "PARAM +ACADEMY",
+      "stylishName(brand)": "PARAM +ACADEMY",
+      "image": "",
+      "token": "",
+      "courseid": 40,
+      "player_url": "../imp/player",
+      "pdf_view_api": "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
+      "pdf_dow_api": "https://pdf-appx.edumate.life/?url="
+    },
+    aash: {
+      "id": "aash",
+      "domain": "aashapi.appx.co.in",
+      "name": "AASH +OFFICIAL",
+      "stylishName(brand)": "AASH +OFFICIAL",
+      "image": "",
+      "token": "",
+      "courseid": 552,
+      "player_url": "../imp/player",
+      "pdf_view_api": "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
+      "pdf_dow_api": "https://pdf-appx.edumate.life/?url="
     },
     rozgar: {
       id: "rozgar",
