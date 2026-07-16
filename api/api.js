@@ -29,7 +29,7 @@ export default function handler(req, res) {
       "stylishName(brand)": "Sachin +Academy",
       image: "",
       token: "",
-      courseid: 37,
+      courseid: 260,
       player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
