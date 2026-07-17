@@ -1,11 +1,32 @@
-export default function handler(req, res) {
-  // --- CORS ---
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+// /functions/api/app.js
+export async function onRequest(context) {
+  const { request } = context;
+  const url = new URL(request.url);
+  const app = url.searchParams.get('app');
+  
+  // --- Handle OPTIONS (CORS preflight) ---
+  if (request.method === 'OPTIONS') {
+    return new Response(null, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Max-Age': '86400',
+      },
+    });
+  }
 
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
+  // --- Validate params ---
+  if (!app) {
+    return new Response(
+      JSON.stringify({ error: "Missing required parameter: app" }),
+      {
+        status: 400,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
+    );
   }
 
   // --- Data store ---
@@ -22,7 +43,7 @@ export default function handler(req, res) {
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
-     sachinsir: {
+    sachinsir: {
       id: "sachinsir",
       domain: "sachinacademyapi.classx.co.in",
       name: "Sachin Academy",
@@ -35,40 +56,40 @@ export default function handler(req, res) {
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
     lakshay: {
-      "id": "lakshay",
-      "domain": "lakshyaclassesapi.appx.co.in",
-      "name": "LAKSHAY CLASSES",
+      id: "lakshay",
+      domain: "lakshyaclassesapi.appx.co.in",
+      name: "LAKSHAY CLASSES",
       "stylishName(brand)": "LAKSHAY +CLASSES",
-      "image": "",
-      "token": "",
-      "courseid": 732,
-      "player_url": "../imp/player",
-      "pdf_view_api": "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-      "pdf_dow_api": "https://pdf-appx.edumate.life/?url="
-    }, // <-- ADDED COMMA HERE
+      image: "",
+      token: "",
+      courseid: 732,
+      player_url: "../imp/player",
+      pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
+      pdf_dow_api: "https://pdf-appx.edumate.life/?url="
+    },
     pa: {
-      "id": "pa",
-      "domain": "parmaracademyapi.classx.co.in",
-      "name": "PARAM +ACADEMY",
+      id: "pa",
+      domain: "parmaracademyapi.classx.co.in",
+      name: "PARAM +ACADEMY",
       "stylishName(brand)": "PARAM +ACADEMY",
-      "image": "",
-      "token": "",
-      "courseid": 40,
-      "player_url": "../imp/player",
-      "pdf_view_api": "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-      "pdf_dow_api": "https://pdf-appx.edumate.life/?url="
+      image: "",
+      token: "",
+      courseid: 40,
+      player_url: "../imp/player",
+      pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
+      pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
     aash: {
-      "id": "aash",
-      "domain": "aashapi.appx.co.in",
-      "name": "AASH +OFFICIAL",
+      id: "aash",
+      domain: "aashapi.appx.co.in",
+      name: "AASH +OFFICIAL",
       "stylishName(brand)": "AASH +OFFICIAL",
-      "image": "",
-      "token": "",
-      "courseid": 552,
-      "player_url": "../imp/player",
-      "pdf_view_api": "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-      "pdf_dow_api": "https://pdf-appx.edumate.life/?url="
+      image: "",
+      token: "",
+      courseid: 552,
+      player_url: "../imp/player",
+      pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
+      pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
     rozgar: {
       id: "rozgar",
@@ -136,7 +157,7 @@ export default function handler(req, res) {
       name: "BOOSTER ACADEMY",
       "stylishName(brand)": "BOOSTER +ACADEMY",
       image: "",
-      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjI2NzExOSIsInRpbWVzdGFtcCI6MTc3ODkzNTQxMiwiaXZfdmVyIjoyLCJzZXNzaW9uIjoiZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKSVV6STFOaUo5LmV5SnBaQ0k2SWpJMk56RXhPU0lzSW1WdFlXbHNJam9pYlhWclpYTm9PR3BoY0RJd01EWkFaMjFoYVd3dVkyOXRJaXdpYm1GdFpTSTZJazExYTJWemFDQkRhRzkxWkdoaGNua2lMQ0owWlc1aGJuUlVlWEJsSWpvaWRYTmxjaUlzSW5SbGJtRnVkRTVoYldVaU9pSmliMjl6ZEdWeVlXTmhaR1Z0ZVY5a1lpSXNJblJsYm1GdWRFbGtJam9pSWl3aVpHbHpjRzl6WVdKc1pTSTZabUZzYzJWOS5QdWFCUUlyS185SUZWWkJWRFhCcDRkV25kMkpjUnRfSEY5YlRhVERJcEVNIn0.0E1mnrHSTqTecyyY851k4Z2weOSdEg99LYkGA94fxF4",
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjI2NzExOSIsInRpbWVzdGFtcCI6MTc3ODkzNTQxMiwiaXZfdmVyIjoyLCJzZXNzaW9uIjoiZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKSVV6STFOaUo5LmV5SnBaQ0k2SWpJMk56RXhPU0lzSW1WdFlXbHNJam9pYlhWclpYTmhPR3BoY0RJd01EWkFaMjFoYVd3dVkyOXRJaXdpYm1GdFpTSTZJazExYTJWemFDQkRhRzkxWkdoaGNua2lMQ0owWlc1aGJuUlVlWEJsSWpvaWRYTmxjaUlzSW5SbGJtRnVkRTVoYldVaU9pSmliMjl6ZEdWeVlXTmhaR1Z0ZVY5a1lpSXNJblJsYm1GdWRFbGtJam9pSWl3aVpHbHpjRzl6WVdKc1pTSTZabUZzYzJWOS5QdWFCUUlyS185SUZWWkJWRFhCcDRkV25kMkpjUnRfSEY5YlRhVERJcEVNIn0.0E1mnrHSTqTecyyY851k4Z2weOSdEg99LYkGA94fxF4",
       courseid: 184,
       player_url: "../imp/player.html",
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
@@ -250,25 +271,31 @@ export default function handler(req, res) {
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     }
-    // Add more entries below, one per app:
-    // 9999: { id: "9999", domain: "...", name: "...", "stylishName(brand)": "...", image: "", token: "", courseid: 0, player_url: "", pdf_view_api: "...", pdf_dow_api: "..." },
   };
-
-  // --- Validate params ---
-  const app = req.query.app;
-  const i = req.query.i; // reserved param, currently unused in response
-
-  if (!app) {
-    res.status(400).json({ error: "Missing required parameter: app" });
-    return;
-  }
 
   const entry = apps[app];
 
   if (!entry) {
-    res.status(404).json({ error: "app not found" });
-    return;
+    return new Response(
+      JSON.stringify({ error: "app not found" }),
+      {
+        status: 404,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
+    );
   }
 
-  res.status(200).json(entry);
+  return new Response(
+    JSON.stringify(entry),
+    {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+    }
+  );
 }
