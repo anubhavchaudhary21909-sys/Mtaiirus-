@@ -46,11 +46,11 @@ export default function handler(req, res) {
     "pdf_view_api": "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
     "pdf_dow_api": "https://pdf-appx.edumate.life/?url="
     },
-    rozgar: {
-      id: "rozgar",
-      domain: "rozgarapinew.teachx.in",
-      name: "ROJGAR WITH ANKIT",
-      "stylishName(brand)": "RWA",
+    vibrant: {
+      id: "vibrant",
+      domain: "vibrantacademykotaapi.akamai.net.in",
+      name: "Vibrant Academy",
+      "stylishName(brand)": "Vibrant +Academy",
       image: "",
       token: "",
       courseid: 184,
