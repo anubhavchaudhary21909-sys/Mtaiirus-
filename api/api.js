@@ -204,7 +204,7 @@ export default function handler(req, res) {
     },
     vidyagram: {
       id: "vidyagram",
-      domain: "armathsapi.akamai.net.in",
+      domain: "sciencefunapi.classx.co.in",
       name: "VIDYAGRAM",
       "stylishName(brand)": "RW ANKIT",
       image: "",
