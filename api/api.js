@@ -178,11 +178,11 @@ export default function handler(req, res) {
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
-    springboard: {
-      id: "springboard",
-      domain: "springboardacademyapi.appx.co.in",
-      name: "SPRING BOARD",
-      "stylishName(brand)": "SPRING BOARD",
+    sachinsir: {
+      id: "sachinsir",
+      domain: "sachinacademyapi.classx.co.in",
+      name: "Sachin Academy",
+      "stylishName(brand)": "Sachin +Academy",
       image: "",
       token: "",
       courseid: 184,
