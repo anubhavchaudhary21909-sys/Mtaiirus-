@@ -144,7 +144,7 @@ export default function handler(req, res) {
     },
     RWA: {
       id: "RWA",
-      domain: "rozgarapinew.teachx.in",
+      domain: "chutapi.smexfot.workers.dev",
       name: "ROJGAR WITH ANKIT",
       "stylishName(brand)": "RWA",
       image: "https://mtaiirus-v2.lovable.app/__l5e/assets-v1/87aad433-8d08-44d9-be73-30658f34b830/mtaiirus-logo.jpg",
