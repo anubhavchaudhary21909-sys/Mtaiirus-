@@ -10,31 +10,7 @@ export default function handler(req, res) {
 
   // --- Data store ---
   const apps = {
-    gyanbindu: {
-      id: "gyanbindu",
-      domain: "gyanbinduapi.appx.co.in",
-      name: "GYAN BINDU",
-      "stylishName(brand)": "GYAN +BINDU",
-      image: "",
-      token: "",
-      courseid: 37,
-      player_url: "../imp/player.html",
-      pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-      pdf_dow_api: "https://pdf-appx.edumate.life/?url="
-    },
-  pa: {
-    "id": "pa",
-    "domain": "parmaracademyapi.classx.co.in",
-    "name": "PARAM ACADEMY",
-    "stylishName(brand)": "PARAM +ACADEMY",
-    "image": "",
-    "token": "",
-    "courseid": 40,
-    "player_url": "../imp/player",
-    "pdf_view_api": "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-    "pdf_dow_api": "https://pdf-appx.edumate.life/?url="
-},
-  aash: {
+   aash: {
     "id": "aash",
     "domain": "aashapi.appx.co.in",
     "name": "AASH OFFICIAL",
@@ -46,19 +22,7 @@ export default function handler(req, res) {
     "pdf_view_api": "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
     "pdf_dow_api": "https://pdf-appx.edumate.life/?url="
     },
-    vibrant: {
-      id: "vibrant",
-      domain: "vibrantacademykotaapi.akamai.net.in",
-      name: "Vibrant Academy",
-      "stylishName(brand)": "Vibrant +Academy",
-      image: "",
-      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEwMjc1IiwidGltZXN0YW1wIjoxNzg0MjgxMTI1LCJpdl92ZXIiOjQ5LCJzZXNzaW9uIjoiZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKSVV6STFOaUo5LmV5SnBaQ0k2SWpFd01qYzFJaXdpWlcxaGFXd2lPaUp6WVdoMUxuTjFjbmxoYm5Ob0xtTnpaVUJuYldGcGJDNWpiMjBpTENKdVlXMWxJam9pVTNWeWRTSXNJblJsYm1GdWRGUjVjR1VpT2lKMWMyVnlJaXdpZEdWdVlXNTBUbUZ0WlNJNkluWnBZbkpoYm5SaFkyRmtaVzE1YTI5MFlWOWtZaUlzSW5SbGJtRnVkRWxrSWpvaUlpd2laR2x6Y0c5ellXSnNaU0k2Wm1Gc2MyVjkuNEt3VDUxbUptSE05aFRaWE5sOXU4NTF2SWJqdlBxaE1abjVYamZQTDE5SSJ9.fDRsvfD_cHiDjU4t23NVEcF_BJKlXXZETwHwXJO7PN8",
-      courseid: 184,
-      player_url: "../imp/player.html",
-      pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-      pdf_dow_api: "https://pdf-appx.edumate.life/?url="
-    },
-    winnersinstitute: {
+        winnersinstitute: {
       id: "winnersinstitute",
       domain: "winnersinstituteapi.cloudflare.net.in",
       name: "Winner Institute",
@@ -70,79 +34,7 @@ export default function handler(req, res) {
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
-    physicsumeshrajori: {
-      id: "physicsumeshrajori",
-      domain: "physicsumeshrajoriaapi.classx.co.in",
-      name: "PHYSICS UMESH",
-      "stylishName(brand)": "PHYSICS WITH+UMESH RAJORIA",
-      image: "",
-      token: "",
-      courseid: 184,
-      player_url: "../imp/player.html",
-      pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-      pdf_dow_api: "https://pdf-appx.edumate.life/?url="
-    },
-    aastha_ias: {
-      id: "aastha_ias",
-      domain: "asthaiasacademyapi.classx.co.in",
-      name: "AASTHA IAS",
-      "stylishName(brand)": "ASTHA IAS",
-      image: "",
-      token: "",
-      courseid: 184,
-      player_url: "../imp/player.html",
-      pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-      pdf_dow_api: "https://pdf-appx.edumate.life/?url="
-    },
-    exampur: {
-      id: "exampur",
-      domain: "crackexampurviapi.classx.co.in",
-      name: "exampur",
-      "stylishName(brand)": "EXAMPUR",
-      image: "",
-      token: "",
-      courseid: 184,
-      player_url: "../imp/player.html",
-      pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-      pdf_dow_api: "https://pdf-appx.edumate.life/?url="
-    },
-    boosteracademy: {
-      id: "boosteracademy",
-      domain: "boosteracademyapi.classx.co.in",
-      name: "BOOSTER ACADEMY",
-      "stylishName(brand)": "BOOSTER ACADEMY",
-      image: "",
-      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjI2NzExOSIsInRpbWVzdGFtcCI6MTc3ODkzNTQxMiwiaXZfdmVyIjoyLCJzZXNzaW9uIjoiZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKSVV6STFOaUo5LmV5SnBaQ0k2SWpJMk56RXhPU0lzSW1WdFlXbHNJam9pYlhWclpYTm9PR3BoY0RJd01EWkFaMjFoYVd3dVkyOXRJaXdpYm1GdFpTSTZJazExYTJWemFDQkRhRzkxWkdoaGNua2lMQ0owWlc1aGJuUlVlWEJsSWpvaWRYTmxjaUlzSW5SbGJtRnVkRTVoYldVaU9pSmliMjl6ZEdWeVlXTmhaR1Z0ZVY5a1lpSXNJblJsYm1GdWRFbGtJam9pSWl3aVpHbHpjRzl6WVdKc1pTSTZabUZzYzJWOS5QdWFCUUlyS185SUZWWkJWRFhCcDRkV25kMkpjUnRfSEY5YlRhVERJcEVNIn0.0E1mnrHSTqTecyyY851k4Z2weOSdEg99LYkGA94fxF4",
-      courseid: 184,
-      player_url: "../imp/player.html",
-      pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-      pdf_dow_api: "https://pdf-appx.edumate.life/?url="
-    },
-    dpsir: {
-      id: "dpsir",
-      domain: "mathsdpsirofficialapi.akamai.net.in",
-      name: "DP SIR MATHS",
-      "stylishName(brand)": "DP SIR",
-      image: "",
-      token: "",
-      courseid: 184,
-      player_url: "../imp/player.html",
-      pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-      pdf_dow_api: "https://pdf-appx.edumate.life/?url="
-    },
-    alphainstitute: {
-      id: "alphainstitute",
-      domain: "alphainstituteproapi.classx.co.in",
-      name: "ALPHA INSTITUTE PRO",
-      "stylishName(brand)": "ALPHA INSTITUTE",
-      image: "",
-      token: "",
-      courseid: 59,
-      player_url: "../imp/player.html",
-      pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-      pdf_dow_api: "https://pdf-appx.edumate.life/?url="
-    },
-    RWA: {
+   RWA: {
       id: "RWA",
       domain: "chutapi.smexfot.workers.dev",
       name: "ROJGAR WITH ANKIT",
@@ -154,79 +46,7 @@ export default function handler(req, res) {
       pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
       pdf_dow_api: "https://pdf-appx.edumate.life/?url="
     },
-    ankitsingh: {
-      id: "ankitsingh",
-      domain: "ankitsinghapi.classx.co.in",
-      name: "ANKIT",
-      "stylishName(brand)": "ANKIT SINGH",
-      image: "",
-      token: "",
-      courseid: 184,
-      player_url: "../imp/player.html",
-      pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-      pdf_dow_api: "https://pdf-appx.edumate.life/?url="
-    },
-    sciencemagnet: {
-      id: "sciencemagnet",
-      domain: "sciencemagnetapi.classx.co.in",
-      name: "SCIENCE MAGNET",
-      "stylishName(brand)": "SCIENCE MAGNET",
-      image: "",
-      token: "",
-      courseid: 184,
-      player_url: "../imp/player.html",
-      pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-      pdf_dow_api: "https://pdf-appx.edumate.life/?url="
-    },
-    sachinsir: {
-      id: "sachinsir",
-      domain: "sachinacademyapi.classx.co.in",
-      name: "Sachin Academy",
-      "stylishName(brand)": "Sachin +Academy",
-      image: "",
-      token: "",
-      courseid: 184,
-      player_url: "../imp/player.html",
-      pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-      pdf_dow_api: "https://pdf-appx.edumate.life/?url="
-    },
-    ashishsingh: {
-      id: "ashishsingh",
-      domain: "ashishsinghlecturesapi.teachx.in",
-      name: "ASHISH SINGH LECTURES",
-      "stylishName(brand)": "AS Lectures",
-      image: "",
-      token: "",
-      courseid: 184,
-      player_url: "../imp/player.html",
-      pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-      pdf_dow_api: "https://pdf-appx.edumate.life/?url="
-    },
-    vidyagram: {
-      id: "vidyagram",
-      domain: "sciencefunapi.classx.co.in",
-      name: "VIDYAGRAM",
-      "stylishName(brand)": "RW ANKIT",
-      image: "",
-      token: "",
-      courseid: 184,
-      player_url: "../imp/player.html",
-      pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-      pdf_dow_api: "https://pdf-appx.edumate.life/?url="
-    },
-    vkknowledge: {
-      id: "vkknowledge",
-      domain: "vkknowledgeelectricalapi.akamai.net.in",
-      name: "VK KNOWLEDGE",
-      "stylishName(brand)": "VK KNOWLEDGE",
-      image: "",
-      token: "",
-      courseid: 184,
-      player_url: "../imp/player.html",
-      pdf_view_api: "https://pdfweb.classx.co.in/pdfjs-latest/web/viewer.html?file=",
-      pdf_dow_api: "https://pdf-appx.edumate.life/?url="
-    }
-    // Add more entries below, one per app:
+        // Add more entries below, one per app:
     // 9999: { id: "9999", domain: "...", name: "...", "stylishName(brand)": "...", image: "", token: "", courseid: 0, player_url: "", pdf_view_api: "...", pdf_dow_api: "..." },
   };
 
